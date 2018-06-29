@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+     <import type="com.asa.meta.notifydemo.acitivity.MainActivity" name="MainActivity"/>
+    </data>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:flexWrap="wrap"
+        app:justifyContent="flex_start"
+        app:alignItems="flex_start"
+        app:alignContent="flex_start">
+
+        <Button
+            android:id="@+id/notify1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{MainActivity::onClickNotify1}"
+            android:text="发送通知类型1" />
+
+        <Button
+            android:id="@+id/notify2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{MainActivity::onClickNotify2}"
+            android:text="发送通知类型2" />
+
+        <Button
+            android:id="@+id/xiaomi"
+            android:onClick="@{MainActivity::onClickXiaoMi}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="小米" />
+
+        <Button
+            android:id="@+id/huawei"
+            android:onClick="@{MainActivity::onClickHuaWei}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="华为" />
+
+        <Button
+            android:id="@+id/meizhu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="魅族" />
+
+        <Button
+            android:id="@+id/oppo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="oppo" />
+
+        <Button
+            android:id="@+id/samsung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="三星" />
+
+        <Button
+            android:id="@+id/oneplus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="一加" />
+
+        <Button
+            android:id="@+id/others"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="其他" />
+    </com.google.android.flexbox.FlexboxLayout>
+</layout>
