@@ -4,86 +4,103 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
-        <import type="com.asa.meta.notifydemo.acitivity.MainActivity" />
-
         <variable
-            name="mainActivity"
-            type="MainActivity" />
-
+            name="onClickEvent"
+            type="com.asa.meta.notifydemo.acitivity.MainActivity.OnClickEvent" />
     </data>
 
-    <com.google.android.flexbox.FlexboxLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:flexWrap="wrap"
-        app:justifyContent="flex_start"
-        app:alignItems="flex_start"
-        app:alignContent="flex_start">
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/openServer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{mainActivity.onClickOpenServer}"
-            android:text="开启服务" />
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:alignContent="flex_start"
+            app:alignItems="flex_start"
+            app:flexWrap="wrap"
+            app:justifyContent="flex_start">
 
-        <Button
-            android:id="@+id/notify1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{mainActivity.onClickNotify1}"
-            android:text="发送通知类型1" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="版本识别》》1" />
 
-        <Button
-            android:id="@+id/notify2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{mainActivity.onClickNotify2}"
-            android:text="发送通知类型2" />
+            <Button
+                android:id="@+id/openServer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{onClickEvent.onClickOpenServer}"
+                android:text="开启服务" />
 
-        <Button
-            android:id="@+id/xiaomi"
-            android:onClick="@{mainActivity.onClickXiaoMi}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="小米" />
+            <Button
+                android:id="@+id/closeServer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{onClickEvent.onClickCloseServer}"
+                android:text="关闭服务" />
 
-        <Button
-            android:id="@+id/huawei"
-            android:onClick="@{mainActivity.onClickHuaWei}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="华为" />
+            <Button
+                android:id="@+id/notify1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{onClickEvent.onClickNotify1}"
+                android:text="发送通知类型1" />
 
-        <Button
-            android:id="@+id/meizhu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="魅族" />
+            <Button
+                android:id="@+id/notify2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{onClickEvent.onClickNotify2}"
+                android:text="发送通知类型2" />
 
-        <Button
-            android:id="@+id/oppo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="oppo" />
+            <Button
+                android:id="@+id/xiaomi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{onClickEvent.onClickXiaoMi}"
+                android:text="小米" />
 
-        <Button
-            android:id="@+id/samsung"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="三星" />
+            <Button
+                android:id="@+id/huawei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{onClickEvent.onClickHuaWei}"
+                android:text="华为" />
 
-        <Button
-            android:id="@+id/oneplus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="一加" />
+            <Button
+                android:id="@+id/meizhu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="魅族" />
 
-        <Button
-            android:id="@+id/others"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="其他" />
-    </com.google.android.flexbox.FlexboxLayout>
+            <Button
+                android:id="@+id/oppo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="oppo" />
+
+            <Button
+                android:id="@+id/samsung"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="三星" />
+
+            <Button
+                android:id="@+id/oneplus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="一加" />
+
+            <Button
+                android:id="@+id/others"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{onClickEvent.onClickOther}"
+                android:text="其他" />
+        </com.google.android.flexbox.FlexboxLayout>
+
+
+    </FrameLayout>
+
 </layout>

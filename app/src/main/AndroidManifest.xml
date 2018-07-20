@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.asa.meta.notifydemo">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:name=".BaseApplication"
         android:allowBackup="true"
@@ -10,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".acitivity.MainActivity">
+        <activity
+            android:name=".acitivity.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,10 +25,19 @@
         <activity android:name=".acitivity.OpenNotifySettingActivity"></activity>
 
         <service
-            android:name="com.asa.meta.notifydemo.servers.EmailService$InnerService"
+            android:name="com.asa.meta.notifydemo.servers.MyService$InnerService"
             android:label="MailService$InnerService" />
         <service
-            android:name="com.asa.meta.notifydemo.servers.EmailService"
+            android:name="com.asa.meta.notifydemo.servers.MyJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name="com.asa.meta.notifydemo.servers.MyJobTwoService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name="com.asa.meta.notifydemo.servers.MyJobIntentService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name="com.asa.meta.notifydemo.servers.MyService"
             android:enabled="true"
             android:exported="true"
             android:label="MailService" />
