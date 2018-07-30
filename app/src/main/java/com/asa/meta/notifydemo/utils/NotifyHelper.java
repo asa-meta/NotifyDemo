@@ -18,18 +18,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NotifyHelper {
-    private static final String LOG_TAG = "NotifyUtils";
-    private static Map<String, String> mChannelMap = new HashMap<>();
+    private Context mContext;
     private int notificationId;
     private Notification notification;
-    private NotificationManager notificationManager;
     private NotificationCompat.Builder mBuilder;
-    private Context mContext;
+    private NotificationManager notificationManager;
+    private static final String LOG_TAG = "NotifyUtils";
+    private static Map<String, String> mChannelMap = new HashMap<>();
 
-
-    public NotifyHelper(Context mContext) {
-        this.mContext = mContext;
-        notificationManager = (NotificationManager) mContext.getSystemService(Activity.NOTIFICATION_SERVICE);
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static NotificationChannel buildChannel(String channelId, String channelName) {
+        NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+        channel.enableLights(true);//是否在桌面icon右上角展示小红点
+        channel.setLightColor(Color.RED);//小红点颜色
+        channel.setShowBadge(true); //是否在久按桌面图标时显示此渠道的通知
+        channel.enableVibration(true);
+        return channel;
     }
 
     public static NotifyHelper buildNotifyHelper(Context context) {
@@ -51,31 +55,16 @@ public class NotifyHelper {
         return new Channel(id, name);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static NotificationChannel buildChannel(String channelId, String channelName) {
-        NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
-        channel.enableLights(true);//是否在桌面icon右上角展示小红点
-        channel.setLightColor(Color.RED);//小红点颜色
-        channel.setShowBadge(true); //是否在久按桌面图标时显示此渠道的通知
-        channel.enableVibration(true);
-        return channel;
-    }
-
-    //根据id清除通知
-    public static void clear(Context context, int notificationId) {
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Activity.NOTIFICATION_SERVICE);
-        notificationManager.cancel(notificationId);
-    }
-
-    public NotifyHelper setNotifyBuilder(String channelId, NotifyInfo notifyInfo) {
-        setCompatBuilder(channelId, notifyInfo);
-        return this;
+    public NotifyHelper(Context mContext) {
+        this.mContext = mContext;
+        notificationManager = (NotificationManager) mContext.getSystemService(Activity.NOTIFICATION_SERVICE);
     }
 
     public NotifyHelper setNotificationId(int notificationId) {
         this.notificationId = notificationId;
         return this;
     }
+
 
     public NotifyHelper setCompatBuilder(String channelId, NotifyInfo notifyInfo) {
         mBuilder = new NotificationCompat.Builder(mContext, channelId);
@@ -105,8 +94,19 @@ public class NotifyHelper {
         return this;
     }
 
+    //根据id清除通知
+    public static void clear(Context context, int notificationId) {
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Activity.NOTIFICATION_SERVICE);
+        notificationManager.cancel(notificationId);
+    }
+
     public void notifyProgress(int progress) {
         mBuilder.setProgress(100, progress, false);
+        sent();
+    }
+
+    public void notifyProgressEnd() {
+        mBuilder.setProgress(0, 0, false);
         sent();
     }
 
@@ -114,15 +114,17 @@ public class NotifyHelper {
         sent();
     }
 
-
     public Notification getNotification() {
         notification = mBuilder.build();
         return notification;
     }
 
-    /**
-     * 发送通知
-     */
+    public NotifyHelper setNotifyBuilder(String channelId, NotifyInfo notifyInfo) {
+        setCompatBuilder(channelId, notifyInfo);
+        return this;
+    }
+
+    // 发送通知
     public void sent() {
         notification = mBuilder.build();
         notificationManager.notify(notificationId, notification);
@@ -132,7 +134,11 @@ public class NotifyHelper {
         notificationManager.cancel(notificationId);
     }
 
-    public static class Channel {
+    public void clearAll() {
+        notificationManager.cancelAll();
+    }
+
+    public final static class Channel {
         String id;
         String name;
 
@@ -140,12 +146,6 @@ public class NotifyHelper {
             this.id = id;
             this.name = name;
         }
-    }
-
-
-    //清除所有通知
-    public void clearAll() {
-        notificationManager.cancelAll();
     }
 
     public final static class NotifyInfo {
