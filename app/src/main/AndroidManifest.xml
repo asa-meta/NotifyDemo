@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.huawei.systemmanager.permission.ACCESS_INTERFACE" />
 
     <application
         android:name=".BaseApplication"
@@ -23,24 +24,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".acitivity.OpenNotifySettingActivity"></activity>
-
-        <service
-            android:name="com.asa.meta.notifydemo.servers.MyService$InnerService"
-            android:label="MailService$InnerService" />
-        <service
-            android:name="com.asa.meta.notifydemo.servers.MyJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service
-            android:name="com.asa.meta.notifydemo.servers.MyJobTwoService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service
-            android:name="com.asa.meta.notifydemo.servers.MyJobIntentService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service
-            android:name="com.asa.meta.notifydemo.servers.MyService"
-            android:enabled="true"
-            android:exported="true"
-            android:label="MailService" />
     </application>
 
 

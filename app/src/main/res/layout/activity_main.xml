@@ -27,20 +27,6 @@
                 android:text="版本识别》》1" />
 
             <Button
-                android:id="@+id/openServer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="@{onClickEvent.onClickOpenServer}"
-                android:text="开启服务" />
-
-            <Button
-                android:id="@+id/closeServer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="@{onClickEvent.onClickCloseServer}"
-                android:text="关闭服务" />
-
-            <Button
                 android:id="@+id/notify1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
